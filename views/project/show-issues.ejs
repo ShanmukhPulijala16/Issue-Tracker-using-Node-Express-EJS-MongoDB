@@ -1,0 +1,294 @@
+<div class="d-flex justify-content-evenly py-4">
+<!-- Button trigger modal -->
+<!-- Show All Issues -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#staticBackdrop"
+>
+  Show All Issues
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <!-- Scrollable modal -->
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">All Issues</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- MODAL BODY -->
+      <div class="modal-body">
+        <% issuesArray.forEach(element => { %>
+        <div class="card" style="width: auto; margin: 0.5rem 0">
+          <div class="card-header fw-bold">Title: <%= element.title %></div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Author: <%= element.author %></li>
+            <li class="list-group-item">
+              Description: <%= element.description %>
+            </li>
+            <li class="list-group-item">Labels: <%= element.labels %></li>
+          </ul>
+        </div>
+        <% }) %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Filter Issues -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#filterIssuesModal"
+>
+  Filter Issues
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="filterIssuesModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="filterModalLabel"
+  aria-hidden="true"
+>
+  <!-- Scrollable modal -->
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="filterModalLabel">Filter Issues</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- MODAL BODY -->
+      <div class="modal-body">
+      <form                     
+        class="border border-light border-3"
+        method="post"
+        id="filter-issue-form">
+
+        <div class="card mb-3" style="max-width: 540px; border: none;">
+          <div class="row g-0">
+
+            <div class="col-md-4">
+              <label style="word-break: break-all; word-wrap: break-word;">Search by Label</label>
+            </div>
+
+            <div class="col-md-8">
+              <% for(let label of project.labels){ %>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="projectLabels" value="<%= label %>" id="<%= label %>">
+                  <label class="form-check-label" for="<%= label %>">
+                    <%= label %>
+                  </label>
+                </div>
+              <% } %>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- BREAK -->
+        <div class="card mb-3" style="max-width: 540px; border: none;">
+          <div class="row g-0">
+
+            <div class="col-md-4">
+              <label style="word-break: break-all; word-wrap: break-word;">Search by Author</label>
+            </div>
+
+            <div class="col-md-8">
+              <input class="form-check-input" type="radio" name="author" id="null" value="" checked>
+              <label class="form-check-label" for="Radios1">
+                None
+              </label>
+                <% for(let issue of issuesArray){ %>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="author" id="" value="<%= issue.author %>">
+                    <label class="form-check-label" for="Radios2">
+                      <%= issue.author %>
+                    </label>
+                  </div>
+                <% } %>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Show Issues</button>
+          <button id="filterIssueButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterIssuesNestedModal" hidden>
+            filterIssuesNestedModalButton
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- Trigger button is inside form in above code -->
+<div class="modal fade" id="filterIssuesNestedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Displayed Issues</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="filter-issue-div" class="card" style="width: auto; margin: 0.5rem 0">
+          <!-- Content will be dynamically added here -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Search Issues -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#searchIssuesModal"
+>
+  Search Issues
+</button>
+
+<div
+  class="modal fade"
+  id="searchIssuesModal"
+  tabindex="-1"
+  aria-labelledby="searchModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="searchModalLabel">Search Issues</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body px-0 py-0">
+
+        <form
+          class="border border-light border-3"
+          action="/"
+          method="get"
+          id="search-issue-form"
+        >
+          <div class="row mb-3 m-auto">
+            <label for="titleLabel" class="col-sm-4 col-form-label"
+              >Title</label
+            >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                name="titleLabel"
+                placeholder="Search by title.."
+                class="form-control"
+                id="titleLabel"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="row mb-3 m-auto">
+            <label for="descLabel" class="col-sm-4 col-form-label"
+              >Description</label
+            >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                name="descLabel"
+                placeholder="Search by description..."
+                class="form-control"
+                id="descLabel"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" class="btn btn-primary">Show Issues</button>
+        <button id="searchIssueButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchIssuesNestedModal" hidden>
+          searchIssuesNestedModalButton
+        </button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<!-- Trigger button is inside form in above code -->
+<div class="modal fade" id="searchIssuesNestedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Displayed Issues</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="search-issue-div" class="card" style="width: auto; margin: 0.5rem 0">
+          <!-- Content will be dynamically added here -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div id="issue-list" data="<%= JSON.stringify(issuesArray) %>"></div>
+<script src="/js/searchIssues.js"></script>
+<script src="/js/filterIssues.js"></script>

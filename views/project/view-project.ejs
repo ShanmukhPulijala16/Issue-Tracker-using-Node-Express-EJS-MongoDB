@@ -1,0 +1,15 @@
+<!-- CODE TO VIEW PROJECT -->
+
+<div class="d-flex justify-content-center pb-4">
+  <div class="card text-center" style="min-width: 48rem; max-width: auto;">
+    <div class="card-header fs-2 fw-bold">
+      Project Name : <%= project.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fs-3 fw-normal">Author : <%= project.author %></h5>
+      <p class="card-text fs-4">Description : <%= project.description %></p>
+    </div>
+  </div>
+</div>
+
+<%- include('./show-issues.ejs') %>

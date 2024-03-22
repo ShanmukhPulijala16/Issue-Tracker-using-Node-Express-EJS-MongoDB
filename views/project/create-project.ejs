@@ -1,0 +1,40 @@
+<nav class="navbar bg-body-tertiary mb-4 sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3" href="/">
+      <i class="bi bi-bug-fill"></i></img>
+      Issue Tracker
+    </a>
+    <button type="button" class="btn btn-outline-success btn-lg fs-5" data-bs-toggle="modal" data-bs-target="#createNewProjectModal">Create New Project</button>
+  </div>
+</nav>
+
+<div class="modal fade" id="createNewProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4" id="exampleModalLabel">Create New Project</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border border-light border-3">
+        <form action="/addProject" method="POST">
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" autocomplete="off" placeholder="Name of your project">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" autocomplete="off" placeholder="Write something about your project"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="author" class="col-form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" autocomplete="off" placeholder="Author">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

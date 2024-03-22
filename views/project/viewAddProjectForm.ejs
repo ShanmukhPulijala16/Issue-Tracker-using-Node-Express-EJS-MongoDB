@@ -1,0 +1,65 @@
+<!-- <form action="/addProject" method="post">
+  <label for="name">Name</label>
+  <input
+    type="text"
+    name="name"
+    id="name"
+    autocomplete="off"
+    placeholder="Name of your project"
+  />
+  <label for="description">Description</label>
+  <input
+    type="text"
+    name="description"
+    id="description"
+    autocomplete="off"
+    placeholder="Write something about your project"
+  />
+  <label for="author">Author</label>
+  <input
+    type="text"
+    name="author"
+    id="author"
+    autocomplete="off"
+    placeholder="Author"
+  />
+  <button type="submit">Create Project</button>
+</form> -->
+
+<form action="/addProject" method="post" style="max-width: 540px">
+  <div class="mb-3">
+    <label for="name" class="form-label fs-5 fw-bold">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      id="name"
+      autocomplete="off"
+      placeholder="Name of your project"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label fs-5 fw-bold">Description</label>
+    <textarea
+      type="text"
+      class="form-control"
+      name="description"
+      id="description"
+      autocomplete="off"
+      placeholder="Write something about your project"
+      style="height: 5rem"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label fs-5 fw-bold">Author</label>
+    <input
+      type="text"
+      class="form-control"
+      name="author"
+      id="author"
+      autocomplete="off"
+      placeholder="Author"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

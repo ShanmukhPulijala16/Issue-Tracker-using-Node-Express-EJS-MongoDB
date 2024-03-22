@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-around align-content-between flex-wrap">
+  <% docs.forEach(element => { %>
+  <div class="card border-info" style="width: 40rem; margin-bottom: 1.5rem;">
+    <div class="card-header fs-4 fw-bold">
+      Name of the Project: <%= element.name %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title fs-5">Author: <%= element.author %></h5>
+      <p class="card-text fs-5">Description: <%= element.description %></p>
+      <a href="/view-project/<%= element._id %>" class="btn btn-success"
+        >Open Project</a
+      >
+    </div>
+  </div>
+  <% }) %>
+</div>
