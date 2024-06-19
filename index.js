@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 const routes = require('./server/routes/index');
 app.use('/', routes);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4001;
 //Database Connection
 connectDB().then(() => {
     app.listen(port, (req, res) => {
